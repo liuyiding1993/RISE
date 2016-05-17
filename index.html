@@ -26,7 +26,7 @@
         <div class="map-container" id="googleMap"></div>
     </div>
     <div class="col-md-3">
-        <div class="panel panel-default" style="border-width: 0">
+        <div id="region_search" class="panel panel-default" style="border-width: 0">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> <strong>Region Search</strong>
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default" style="border-width: 0">
+        <div id="region_explore" class="panel panel-default" style="border-width: 0">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> <strong>Region Exploration</strong>
@@ -110,7 +110,8 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default" style="border-width: 0; margin-bottom: 0">
+
+        <div id="results" class="panel panel-default" style="border-width: 0; margin-bottom: 0">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> <strong>POIs Inside</strong>
@@ -128,6 +129,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdB3HJ5NXO6IUu-4O_iuGfHjpgvqffZt4&callback=initMap">
 </script>
 
+<script src="js/init.js"></script>
 <script src="js/region_explore.js"></script>
 <script src="js/region_search.js"></script>
 <script src="js/map.js"></script>

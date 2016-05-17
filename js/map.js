@@ -1,16 +1,13 @@
 var map;
-var Singapore = {lat: 1.3264129, lng: 103.8077371};
-
 function initMap() {
+    var Singapore = {lat: 1.3264129, lng: 103.8077371};
     map = new google.maps.Map(document.getElementById('googleMap'), {
         center: Singapore,
         zoom: 12
     });
 }
 
-
 var region;
-
 function drawRectangular(bounds) {
     if (region != null) {
         region.setMap(null);
