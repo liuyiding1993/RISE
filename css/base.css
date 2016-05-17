@@ -1,0 +1,19 @@
+html,body{
+    margin:0;
+    height:100%;
+}
+body { padding-top: 0; }
+.container-fluid,#googleMap{
+    height: 100%;
+    padding: 0;
+}
+[class*="col-"]{
+    padding: 0;
+}
+
+.map-container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+}
