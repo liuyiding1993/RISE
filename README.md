@@ -66,6 +66,11 @@ tags = [
 
 See `./js/tags.js` for the example.
 
+## Test
+To test the demo, you can uncomment the data example in `showSearchResult()` of `.\js\region_search.js` (or `showExploreResult()` of `.\js\region_explore.js`) and send queries as you want.
+Sorry for no test modules.
+
+
 ## File Structure
 ```
 ./
