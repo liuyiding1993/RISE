@@ -11,11 +11,12 @@ To setting everthing up, please follow the instruction below. If your there are 
 
 ## Using Region Search API
 
-1. Fill in the url in `.\js\region_search.js`:
+Firstly, Fill in the url in `.\js\region_search.js`:
     ```javascript
     jQuery.post("YOUR_URL_HERE", query, showSearchResult);
     ```
-2. Response with data as:
+    
+Secondly, response with data as:
     ```javascript
     data = {
         'bounds': {
@@ -38,11 +39,12 @@ To setting everthing up, please follow the instruction below. If your there are 
 
 ## Using Region Exploration API
 
-1. Fill in the url in `.\js\region_explore.js`:
+Firstly, fill in the url in `.\js\region_explore.js`:
     ```javascript
     jQuery.post("YOUR_URL_HERE", query, showExploreResult);
     ```
-2. Response with data as:
+    
+Secondly, response with some data as:
     ```javascript
     data = {
             "topics": [tags, tags, tags] // could have more tags...
@@ -100,6 +102,5 @@ To setting everthing up, please follow the instruction below. If your there are 
 ├── pics
 │   └── topic_icon.png
 └── README.md
-
 ```
 
