@@ -12,12 +12,12 @@ To setting everthing up, please follow the instruction below. If your there are 
 ## Using Region Search API
 
 Firstly, Fill in the url in `.\js\region_search.js`:
-    ```javascript
+    ```
     jQuery.post("YOUR_URL_HERE", query, showSearchResult);
     ```
     
 Secondly, response with data as:
-    ```javascript
+    ```
     data = {
         'bounds': {
             north: 1.3440514780783714, 
@@ -40,18 +40,18 @@ Secondly, response with data as:
 ## Using Region Exploration API
 
 Firstly, fill in the url in `.\js\region_explore.js`:
-    ```javascript
+    ```
     jQuery.post("YOUR_URL_HERE", query, showExploreResult);
     ```
     
 Secondly, response with some data as:
-    ```javascript
+    ```
     data = {
             "topics": [tags, tags, tags] // could have more tags...
         };
     ```
     And the `tags` should be like:
-    ```javascript
+    ```
     tags = [
         {text: "...", size: 36},
         {text: "...", size: 18},
