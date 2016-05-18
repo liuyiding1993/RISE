@@ -47,12 +47,11 @@ $("#draw").on('click', function() {
 function showExploreResult(data) {
     $("#result_title").text("Region Topics");
     // test data. See /js/word_cloud.js for tags format.
-    //data = {
-    //    "topics": [tags, tags, tags]
-    //};
+    data = {
+        "topics": [tags, tags, tags]
+    };
     showTopics(data["topics"]);
 }
-
 
 
 function showTopics(topics) {
