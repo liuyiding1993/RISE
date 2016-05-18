@@ -10,13 +10,14 @@ And here in this repository, only front end is included and some APIs available 
 To setting everthing up, please follow the instruction below. If your there are still problems, shoot me with email: lawrencelauu@gmail.com.
 
 ## Using Region Search API
-
 Firstly, Fill in the url in `.\js\region_search.js`:
+
     ```
     jQuery.post("YOUR_URL_HERE", query, showSearchResult);
     ```
     
 Secondly, response with data as:
+
     ```
     data = {
         'bounds': {
@@ -38,19 +39,22 @@ Secondly, response with data as:
     ```
 
 ## Using Region Exploration API
-
 Firstly, fill in the url in `.\js\region_explore.js`:
+
     ```
     jQuery.post("YOUR_URL_HERE", query, showExploreResult);
     ```
     
 Secondly, response with some data as:
+
     ```
     data = {
             "topics": [tags, tags, tags] // could have more tags...
         };
     ```
+    
     And the `tags` should be like:
+    
     ```
     tags = [
         {text: "...", size: 36},
@@ -59,6 +63,7 @@ Secondly, response with some data as:
         {text: "...", size: 11}
     ]
     ```
+    
     See `./js/tags.js` for the example.
 
 ## File Structure
