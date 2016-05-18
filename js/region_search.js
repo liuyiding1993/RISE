@@ -38,19 +38,23 @@ $(function () {
 function showSearchResult(data) {
     $("#result_title").text("POI Inside");
     // test data
-    data = {
-        'bounds': {north: 1.3440514780783714, south: 1.3087743219216286, east: 103.82537567807832, west: 103.79009852192156},
-        'pois': [
-            {
-                'image_url': './pics/1.png',
-                'poi_name': 'Neverland',
-                'lat': 1.3,
-                'lng': 103,
-                'categories': ['Dance Clubs', 'Music Venues'],
-                'description': 'With the ambitious vision of delivering a clubbing experience unlike any other...'
-            }
-        ]
-    };
+    //data = {
+    //    'bounds': {
+    //        north: 1.3440514780783714,
+    //        south: 1.3087743219216286,
+    //        east: 103.82537567807832,
+    //        west: 103.79009852192156},
+    //    'pois': [
+    //        {
+    //            'image_url': './pics/1.png',
+    //            'poi_name': 'Neverland',
+    //            'lat': 1.3,
+    //            'lng': 103,
+    //            'categories': ['Dance Clubs', 'Music Venues'],
+    //            'description': 'With the ambitious vision of delivering a clubbing experience unlike any other...'
+    //        }
+    //    ]
+    //};
     drawRectangular(data['bounds'], "search");
     showPoiInside(data['pois']);
 }
