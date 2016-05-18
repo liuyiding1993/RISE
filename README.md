@@ -12,59 +12,59 @@ To setting everthing up, please follow the instruction below. If your there are 
 ## Using Region Search API
 Firstly, Fill in the url in `.\js\region_search.js`:
 
-    ```
-    jQuery.post("YOUR_URL_HERE", query, showSearchResult);
-    ```
+```javascript
+jQuery.post("YOUR_URL_HERE", query, showSearchResult);
+```
     
 Secondly, response with data as:
 
-    ```
-    data = {
-        'bounds': {
-            north: 1.3440514780783714, 
-            south: 1.3087743219216286, 
-            east: 103.82537567807832, 
-            west: 103.79009852192156},
-        'pois': [
-            {
-                'image_url': './pics/1.png',
-                'poi_name': 'Neverland',
-                'lat': 1.3,
-                'lng': 103,
-                'categories': ['Dance Clubs', 'Music Venues'],
-                'description': 'With the ambitious vision of delivering a clubbing experience...'
-            }
-        ]
-    };
-    ```
+```javascript
+data = {
+    'bounds': {
+        north: 1.3440514780783714, 
+        south: 1.3087743219216286, 
+        east: 103.82537567807832, 
+        west: 103.79009852192156},
+    'pois': [
+        {
+            'image_url': './pics/1.png',
+            'poi_name': 'Neverland',
+            'lat': 1.3,
+            'lng': 103,
+            'categories': ['Dance Clubs', 'Music Venues'],
+            'description': 'With the ambitious vision of delivering a clubbing experience...'
+        }
+    ]
+};
+```
 
 ## Using Region Exploration API
 Firstly, fill in the url in `.\js\region_explore.js`:
 
-    ```
-    jQuery.post("YOUR_URL_HERE", query, showExploreResult);
-    ```
+```javascript
+jQuery.post("YOUR_URL_HERE", query, showExploreResult);
+```
     
 Secondly, response with some data as:
 
-    ```
-    data = {
-            "topics": [tags, tags, tags] // could have more tags...
-        };
-    ```
-    
-    And the `tags` should be like:
-    
-    ```
-    tags = [
-        {text: "...", size: 36},
-        {text: "...", size: 18},
-        {text: "...", size: 30},
-        {text: "...", size: 11}
-    ]
-    ```
-    
-    See `./js/tags.js` for the example.
+```javascript
+data = {
+        "topics": [tags, tags, tags] // could have more tags...
+    };
+```
+
+And the `tags` should be like:
+
+```javascript
+tags = [
+    {text: "...", size: 36},
+    {text: "...", size: 18},
+    {text: "...", size: 30},
+    {text: "...", size: 11}
+]
+```
+
+See `./js/tags.js` for the example.
 
 ## File Structure
 ```
