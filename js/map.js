@@ -8,7 +8,7 @@ function initMap() {
 }
 
 var region;
-function drawRectangular(bounds) {
+function drawRectangular(bounds, type) {
     if (region != null) {
         region.setMap(null);
     }
@@ -32,6 +32,13 @@ function drawRectangular(bounds) {
         editable: true
     });
     region.setMap(map);
+
+    if (type == "search") {
+        region.addListener('bounds_changed', function() {
+            $("#result_title").text("Results");
+            $("#poi_inside").empty();
+        });
+    }
 }
 
 

@@ -36,6 +36,7 @@ $(function () {
 
 // TODO: transform data into {'bounds': bounds, 'pois': []}
 function showSearchResult(data) {
+    $("#result_title").text("POI Inside");
     // test data
     data = {
         'bounds': {north: 1.3440514780783714, south: 1.3087743219216286, east: 103.82537567807832, west: 103.79009852192156},
@@ -50,18 +51,19 @@ function showSearchResult(data) {
             }
         ]
     };
-    drawRectangular(data['bounds']);
+    drawRectangular(data['bounds'], "search");
     showPoiInside(data['pois']);
 }
 
 
 function showPoiInside(pois) {
+    $("#result_list").empty();
     for (var i = 0; i < pois.length; i++) {
         addPoi(pois[i]);
     }
 }
 
-// TODO: add event listener to support showing poi on the map by clicking the widget.
+// TODO: 1. add event listener to support showing poi on the map by clicking the widget. 2. highlight keywords.
 function addPoi(poi) {
     var image_html = "<div class='media-left'> <a href='#'> <img class='media-object' src='" + poi['image_url'] + "' alt='...' style='width:50px;height:50px;'> </a> </div>";
     var head_html = "<h4 class='media-heading'>" + poi['poi_name'] + "</h4>";
@@ -75,5 +77,5 @@ function addPoi(poi) {
     var media_body_html = "<div class='media-body'>" + head_html + categories_html + description_html + "</div>";
     var content_html = "<li class='media'>" + image_html + media_body_html + "</li>";
 
-    $("#poi_inside").append(content_html);
+    $("#result_list").append(content_html);
 }

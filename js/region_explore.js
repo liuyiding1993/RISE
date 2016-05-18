@@ -40,10 +40,32 @@ $("#explore").on('click', function() {
 
 
 $("#draw").on('click', function() {
-    drawRectangular();
+    drawRectangular(null, "explore");
 });
 
 
 function showExploreResult(data) {
+    $("#result_title").text("Region Topics");
+    // test data. See /js/word_cloud.js for tags format.
+    data = {
+        "topics": [tags, tags, tags]
+    };
+    showTopics(data["topics"]);
+}
 
+
+
+function showTopics(topics) {
+    $("#result_list").empty();
+    for (var i = 0; i < topics.length; i++) {
+        addTopic(i, topics[i]);
+    }
+}
+
+
+function addTopic(num, topic) {
+    num = String(num);
+    var content_html = '<li class="media"> <div class="media-body" style="padding-top: 50px"> <img src="./pics/topic_icon.png" style="width: 20px; margin-right: 5px" align="left"> <h4 class="media-heading">Topic #' + num + ':</h4> </div> <div id="word_cloud' + num + '" class="media-right"> </div> </li>';
+    $("#result_list").append(content_html);
+    addWordCloud(topic, "#word_cloud" + num);
 }
