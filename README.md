@@ -7,7 +7,7 @@ This demo is equipped with two functions:
 2. Region exploration.
 
 And here in this repository, only front end is included and some APIs available for calling.
-To setting everthing up, please follow the instruction below. If your there are still problems, shoot me with email: lawrencelauu@gmail.com.
+To setting everthing up, please follow the instruction below. If your problems are still unsolved, shoot me with email: lawrencelauu@gmail.com.
 
 ## Using Region Search API
 Firstly, Fill in the url in `.\js\region_search.js`:
