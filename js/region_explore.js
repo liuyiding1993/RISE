@@ -1,21 +1,33 @@
-$(".dropdown-menu").on('click', 'li a', function(event) {
-    $(".dropdown-toggle").text("Top-" + $(this).text());
-    $(".dropdown-toggle").val($(this).text());
+$("#topk_menu").on('click', 'li a', function (event) {
+    var $topk = $("#topk");
+    $topk.text("Top-" + $(this).text());
+    $topk.val($(this).text());
+});
+
+$("#search_type_menu").on('click', 'li a', function (event) {
+    var $search_type = $("#search_type");
+    $search_type.text($(this).text());
+    $search_type.val($(this).text());
 });
 
 
 $("#slider").dateRangeSlider({
     // The month should be set as month - 1.
-    "bounds": { min: new Date(2015, 0, 1), max: new Date(2015, 11, 31)}
+    defaultValues:{
+        min: new Date(2015, 0, 1),
+        max: new Date(2015, 0, 31)
+    },
+    bounds: {min: new Date(2015, 0, 1), max: new Date(2015, 11, 31)}
 });
 
 
-$("#explore").on('click', function() {
+$("#explore").on('click', function () {
+	$("#result_stat").html("");
     var top_k = $(".dropdown-toggle").val();
     var dateValues = $("#slider").dateRangeSlider("values");
-    var minDate = dateValues.min.toString();
-    var maxDate = dateValues.max.toString();
-    if(top_k == "") {
+    var minDate = formatDate(dateValues.min);
+    var maxDate = formatDate(dateValues.max);
+    if (top_k == "") {
         $('#topk_warning').popover('show');
         setTimeout(function () {
             $('#topk_warning').popover('hide');
@@ -28,27 +40,46 @@ $("#explore").on('click', function() {
         }, 2000);
     }
     if (top_k != "" && region != null) {
+        $("#result_list").html("<img class=\"media-object\" src=\"./pics/loading.gif\" style=\"width:100px;height:100px;\">");
+		var bound = getRegionBounds();
         var query = {
-            'top_k': top_k,
-            'minDate': minDate,
-            'maxDate': maxDate,
-            'bounds': getRegionBounds()
+            'topk': top_k,
+            'start': minDate,
+            'end': maxDate,
+            'sw': bound.south + ',' + bound.west,
+            'ne': bound.north + ',' + bound.east
         };
-        jQuery.post("", query, showExploreResult);
+        jQuery.get("./regionexplore/explore.aspx", query, showExploreResult);
     }
 });
 
 
-$("#draw").on('click', function() {
+$("#draw").on('click', function () {
     drawRectangular(null, "explore");
 });
 
+function formatDate(date) {
+    return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+}
+
 
 function showExploreResult(data) {
-    $("#result_title").text("Region Topics");
     // test data. See /js/word_cloud.js for tags format.
+	console.log(data);
+    var jobj = JSON.parse(data);
+    $("#result_title").text("Region Topics");
+	$("#result_stat").html("Time cost: "+ jobj.paras.cost/1000 +" seconds.");
+    var topic_list = [];
+    for (var i = 0; i < jobj.topics.length; i++) {
+        var t = jobj.topics[i];
+        var tags = [];
+        for (var j = 0; j < t.words.length; j++) {
+            tags.push({"text": t.words[j].word, "size": t.words[j].count});
+        }
+        topic_list.push(tags);
+    }
     data = {
-        "topics": [tags, tags, tags]
+        "topics": topic_list
     };
     showTopics(data["topics"]);
 }

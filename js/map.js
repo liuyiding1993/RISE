@@ -45,9 +45,9 @@ function drawRectangular(bounds, type) {
 function getRegionBounds() {
     var raw_bound = region.getBounds();
     return {
-        north: raw_bound['H']['j'],
-        south: raw_bound['H']['H'],
-        east: raw_bound['j']['H'],
-        west: raw_bound['j']['j']
+        north: raw_bound.getNorthEast().lat(),
+        south: raw_bound.getSouthWest().lat(),
+        east: raw_bound.getNorthEast().lng(),
+        west: raw_bound.getSouthWest().lng()
     };
 }

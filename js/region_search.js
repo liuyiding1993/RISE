@@ -1,10 +1,19 @@
 $("#search").on('click', function() {
+	$("#result_stat").html("");
+    var search_type = $("#search_type").val();
     var height = $("#height").val();
     var width = $("#width").val();
     var keywords = $("#keywords").val();
-    var reg = new RegExp("^[0-9]*$");
+    var reg = new RegExp("^[0-9]+\.{0,1}[0-9]*$");
     var isHeightValid = reg.test(height) && height != '';
     var isWidthValid = reg.test(width) && width != '';
+    if (search_type == "") {
+        $('#search_type_warning').popover('show');
+        setTimeout(function () {
+            $('#search_type_warning').popover('hide');
+        }, 2000);
+    }
+
     if(!isHeightValid){
         $('#height_warning').popover('show');
         setTimeout(function () {
@@ -17,14 +26,16 @@ $("#search").on('click', function() {
             $('#width_warning').popover('hide');
         }, 2000);
     }
-    if(isHeightValid && isWidthValid) {
+    if(isHeightValid && isWidthValid && search_type != "") {
         var query = {
             "height": height,
             "width": width,
+            "search_type": search_type,
             "keywords": keywords
         };
+        console.log(query);
         // TODO: fill in the search url.
-         jQuery.post("", query, showSearchResult);
+         jQuery.post("mc", query, showSearchResult);
     }
 });
 
@@ -38,30 +49,20 @@ $(function () {
 function showSearchResult(data) {
     $("#result_title").text("POI Inside");
     // test data
-    data = {
-       'bounds': {
-           north: 1.3440514780783714,
-           south: 1.3087743219216286,
-           east: 103.82537567807832,
-           west: 103.79009852192156},
-       'pois': [
-           {
-               'image_url': './pics/1.png',
-               'poi_name': 'Neverland',
-               'lat': 1.3,
-               'lng': 103,
-               'categories': ['Dance Clubs', 'Music Venues'],
-               'description': 'With the ambitious vision of delivering a clubbing experience unlike any other...'
-           }
-       ]
-    };
-    drawRectangular(data['bounds'], "search");
+  if(!data['valid']){
     showPoiInside(data['pois']);
+  }
+  else{
+      var center = new google.maps.LatLng((data['bounds']['north']+data['bounds']['south'])/2, (data['bounds']['east']+data['bounds']['west'])/2);
+      map.panTo(center);
+      drawRectangular(data['bounds'], "search");
+      showPoiInside(data['pois']);
+    }
 }
 
 
 function showPoiInside(pois) {
-    // $("#result_list").empty();
+    $("#result_list").empty();
     for (var i = 0; i < pois.length; i++) {
         addPoi(pois[i]);
     }
