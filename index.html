@@ -74,7 +74,7 @@
                                     Search for
                                     <span class="caret"></span>
                                 </button>
-                                <ul id="search_type_menu" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <ul id="search_type_menu" class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                     <li><a href="#">Most influential</a></li>
                                     <li><a href="#">Most diversified</a></li>
                                 </ul>
@@ -139,11 +139,15 @@
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> <strong id="result_title">Results</strong>
+                    <button id="default_rank" class="btn btn-default btn-xs" style="float: right">Rank by Default</button>
+                    <button id="category_rank" class="btn btn-default btn-xs" style="float: right">Rank by Category</button>
                 </h3>
             </div>
             <div class="panel-body" style="padding-bottom: 0">
-				<div id="result_stat"></div>
+                <div id="result_stat"></div>
                 <ul id="result_list" class="media-list"></ul>
+                <div class="my_accordion list-unstyled" id="result_list_by_category">
+                </div>
             </div>
         </div>
     </div>

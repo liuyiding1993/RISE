@@ -23,7 +23,7 @@ $("#slider").dateRangeSlider({
 
 $("#explore").on('click', function () {
 	$("#result_stat").html("");
-    var top_k = $(".dropdown-toggle").val();
+    var top_k = $("#topk").val();
     var dateValues = $("#slider").dateRangeSlider("values");
     var minDate = formatDate(dateValues.min);
     var maxDate = formatDate(dateValues.max);
