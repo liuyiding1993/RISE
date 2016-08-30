@@ -4,12 +4,6 @@ $("#topk_menu").on('click', 'li a', function (event) {
     $topk.val($(this).text());
 });
 
-$("#search_type_menu").on('click', 'li a', function (event) {
-    var $search_type = $("#search_type");
-    $search_type.text($(this).text());
-    $search_type.val($(this).text());
-});
-
 
 $("#slider").dateRangeSlider({
     // The month should be set as month - 1.
@@ -22,7 +16,6 @@ $("#slider").dateRangeSlider({
 
 
 $("#explore").on('click', function () {
-	$("#result_stat").html("");
     var top_k = $("#topk").val();
     var dateValues = $("#slider").dateRangeSlider("values");
     var minDate = formatDate(dateValues.min);
@@ -40,6 +33,12 @@ $("#explore").on('click', function () {
         }, 2000);
     }
     if (top_k != "" && region != null) {
+        $("#result_stat").html("");
+
+        erasePoiInside();
+        resetListStatus();
+        hideRankButtons();
+
         $("#result_list").html("<img class=\"media-object\" src=\"./pics/loading.gif\" style=\"width:100px;height:100px;\">");
 		var bound = getRegionBounds();
         var query = {
@@ -57,6 +56,7 @@ $("#explore").on('click', function () {
 $("#draw").on('click', function () {
     drawRectangular(null, "explore");
 });
+
 
 function formatDate(date) {
     return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();

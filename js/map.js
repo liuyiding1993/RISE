@@ -29,7 +29,8 @@ function drawRectangular(bounds, type) {
     region = new google.maps.Rectangle({
         bounds: bounds,
         draggable: true,
-        editable: true
+        editable: true,
+        fillOpacity: 0.1
     });
     region.setMap(map);
 
@@ -37,6 +38,18 @@ function drawRectangular(bounds, type) {
         region.addListener('bounds_changed', function() {
             $("#result_title").text("Results");
             $("#poi_inside").empty();
+
+            $("#default_rank").hide();
+            $("#category_rank").hide();
+
+            $("#result_list").empty();
+            $('#result_list').show();
+            $("#result_list_by_category").empty();
+            $('#result_list_by_category').hide();
+
+            category_pois = {};
+            for (var category in category_markers) clearMarkers(category_markers[category]);
+            category_markers = {};
         });
     }
 }
@@ -50,4 +63,22 @@ function getRegionBounds() {
         east: raw_bound.getNorthEast().lng(),
         west: raw_bound.getSouthWest().lng()
     };
+}
+
+
+function clearMarkers(container) {
+    for (var i = 0; i < container.length; i++) container[i].setMap(null);
+}
+
+
+function addMarker(name, lat, lng, color, container) {
+    var icon = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color.slice(1));
+    var marker = new google.maps.Marker({
+        map: map,
+        title: name,
+        position: {lat: lat, lng: lng},
+        icon: icon,
+        visible: true
+    });
+    container.push(marker);
 }
